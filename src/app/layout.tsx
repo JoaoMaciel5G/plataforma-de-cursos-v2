@@ -9,11 +9,7 @@ export const metadata: Metadata = {
   description: "A Melhor plataforma de cursos de desenvolvimento web",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
     <html lang="pt-br">
       <body className={`${roboto.className} dark`}>{children}</body>
