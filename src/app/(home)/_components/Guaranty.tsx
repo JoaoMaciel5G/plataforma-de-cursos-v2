@@ -24,8 +24,8 @@ const Guaranty = () => {
                         <Button className="bg-primary rounded-md w-full text-lg font-semibold py-7">Quero ser um programador 11 estrelas</Button>
                     </div>
                 </div>
-                <div className="flex justify-center items-center">
-                    <Image className="w-[60%] lg:w-[40%]" src={selo} alt="selo de garantia de sete dias"/>
+                <div className="flex justify-center">
+                    <Image className="w-[435px] h-[435px] md:h-[300px] md:w-[300px]" height={0} width={0} src={selo} alt="selo de garantia de sete dias"/>
                 </div>
             </>
     );
