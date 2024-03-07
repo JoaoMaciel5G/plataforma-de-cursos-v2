@@ -2,15 +2,18 @@ import Header from "../_components/Header";
 import Presentation from "./_components/Presentation";
 import CourseItems from "./_components/CourseItems";
 import { db } from "../_lib/prisma";
+import Suport from "./_components/Suport";
+import Guaranty from "./_components/Guaranty";
+import Footer from "./_components/Footer";
 
 export default async function Home() {
   const courses = await db.courses.findMany({})
   return (
     <>
       <Header/>
-      <main className="mx-3">
+      <main>
           <Presentation/>
-          <section className="my-14">
+          <section className="my-14 mx-3">
               <div className="text-center">
                   <h2 className="font-bold text-2xl my-4 uppercase">Os melhores cursos você encontra aqui</h2>
               </div>
@@ -24,8 +27,12 @@ export default async function Home() {
                 }
               </div>
           </section>
+          <Suport/>
+          <section className="flex flex-col my-6 py-10 px-5 justify-between md:flex-row">
+            <Guaranty/>
+          </section>
+          <Footer/>
       </main>
     </>
-    
   );
 }
