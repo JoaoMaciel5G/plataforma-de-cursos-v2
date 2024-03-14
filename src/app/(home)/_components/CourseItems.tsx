@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Courses } from "@prisma/client";
 import Image from "next/image"
 
@@ -8,6 +8,7 @@ const CourseItems = ({courses}: {courses: Courses}) => {
             <CardContent className="p-4">
                 <div>
                     <Image priority={false} height={0} width={0} sizes="100vw" className="h-[159px] w-full rounded-2xl" key={courses.id} src={courses.imageUrl} alt={courses.title}/>
+                    <CardTitle className="text-md overflow-hidden text-ellipsis text-nowrap">{courses.title}</CardTitle>
                 </div>
             </CardContent>
         </Card>
