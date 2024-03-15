@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
 import AuthProvider from "./_providers/auth";
 import CartContext from "./_providers/cart";
@@ -18,6 +19,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
             <AuthProvider>
               <CartContext>
                 {children}
+                <Toaster />
               </CartContext>
             </AuthProvider> 
         </body>
