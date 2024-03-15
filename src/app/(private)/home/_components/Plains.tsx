@@ -7,11 +7,11 @@ import Link from "next/link";
 const PlainSignature = async () => {
     const plains = await db.plains.findMany({})
     return (
-        <div className="flex flex-col mx-5 gap-5 my-6 md:flex-row">
+        <div className="flex flex-col mx-5 gap-5 my-6 lg:flex-row">
             {
                 plains.map((plain: Plains)=>(
-                    <Card key={plain.id} className="px-5">
-                        <CardContent className="text-center py-12">
+                    <Card key={plain.id} className="px-5 flex justify-center">
+                        <CardContent className="text-center py-12 w-fit">
                             <div>
                                 <h2 className="text-4xl font-medium my-5 text-center">{plain.option}</h2>
                                 <div className="flex flex-col gap-5">
