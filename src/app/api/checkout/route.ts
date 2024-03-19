@@ -20,8 +20,9 @@ export async function POST(request: NextRequest){
             image: prod.images[0]
         }
     })
-
+    
     const line_items = validateCartItems(products, cartDetails)
+    
 
     const session = await stripe.checkout.sessions.create({
         mode: "payment",
@@ -30,6 +31,7 @@ export async function POST(request: NextRequest){
         success_url: `${baseUrl}/success/{CHECKOUT_SESSION_ID}`,
         cancel_url: `${baseUrl}/cart`
     })
+    
 
     return NextResponse.json(session, {status: 200})
 }
