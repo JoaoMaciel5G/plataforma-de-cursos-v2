@@ -1,9 +1,8 @@
 "use client"
 
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { Courses } from "@prisma/client";
 import { signIn, useSession } from "next-auth/react";
-import Image from "next/image"
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
