@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 function Cart() {
     const {totalPrice, cartCount, clearCart, cartDetails, removeItem, redirectToCheckout} = useShoppingCart()
 
-    async function checkout() {
+    async function checkout() {        
         const response = await fetch("api/checkout", {
             method: "POST",
             headers: {
@@ -16,6 +16,7 @@ function Cart() {
             },
             body: JSON.stringify(cartDetails)
         })
+        
 
         const {id} = await response.json()
 
@@ -35,11 +36,9 @@ function Cart() {
                         const image = cartDetails[key].image!
                         return (
                             <div className="border-b-[1px] border-zinc-400 py-6 flex" key={cartDetails[key].id}>
-                                <Card className="w-[159px] mr-6">
-                                    <CardContent>
-                                        <div className="p-3 w-40 rounded-lg mr-5">
-                                            <Image width={150} height={150} src={image} alt={cartDetails[key].name}/>
-                                        </div>
+                                <Card className="w-[160px] mr-6">
+                                    <CardContent className="w-full h-full">
+                                        <Image width={300} height={0} className="w-full h-full p-2" src={image} alt={cartDetails[key].name}/>
                                     </CardContent>
                                 </Card>
                                 <div>
