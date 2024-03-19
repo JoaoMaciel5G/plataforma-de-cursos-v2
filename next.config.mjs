@@ -5,6 +5,9 @@ const nextConfig = {
             {
                 hostname: "cdn.jsdelivr.net"
             },
+            {
+                hostname: "www.locaweb.com.br"
+            }
         ],
     },
 };

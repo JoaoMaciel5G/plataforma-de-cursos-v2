@@ -30,6 +30,7 @@ model Plains {
   option         String
   price          Decimal @db.Decimal(10, 2)
   discountPrince Decimal @db.Decimal(10, 2)
+  imageUrl       String?
 }
 
 model Account {
