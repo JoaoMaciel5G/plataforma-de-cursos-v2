@@ -19,11 +19,18 @@ export default async function Home() {
               </div>
               <div className="flex select-none justify-between gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden">
                 {
-                    courses.map((item)=>(
-                      <div key={item.id}>
-                        <CourseItems courses={item}/> 
-                      </div>
-                    ))
+                    courses.map((item)=>{
+                      const productData = {
+                        ...item,
+                        price: item.price.toString(),
+                      };
+                      
+                      return(
+                        <div key={item.id}>
+                          <CourseItems courses={productData}/> 
+                        </div>
+                      )
+                    })
                 }
               </div>
           </section>

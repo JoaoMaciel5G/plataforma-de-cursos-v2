@@ -1,9 +1,28 @@
-import Link from "next/link";
+"use client"
+
 import StarCheckList from "./StarCheckList";
 import ItemCheckList from "./ItemCheckList";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 const CheckListRightSide = () => {
+    const router = useRouter()
+    const {data} = useSession()
+    
+    const handleToaster = () => {
+        toast("Para acessar os cursos, você precisa estar logado!", {
+            action: {
+                label: "Fazer Login",
+                onClick: () => signIn("google")
+            }
+        })
+    }
+
+    const handleRouter = () => {
+        router.push(`/home`) 
+    }
     return (
         <div className="flex justify-center items-center xl:w-1/2">
             <div className="p-10 bg-secondary rounded-xl xl:w-[500px]">
@@ -18,10 +37,10 @@ const CheckListRightSide = () => {
                     <ItemCheckList>Diversos certificados e mais de 76 projetos e desafios práticos</ItemCheckList>
                     <ItemCheckList>7 dias de Garantia</ItemCheckList>
                 </div>
-                <Button className="w-full flex justify-center bg-primary rounded-lg text-lg tracking-wider py-8">
+                <Button onClick={data?.user ? handleRouter : handleToaster} className="w-full flex justify-center bg-primary rounded-lg text-lg tracking-wider py-8">
                     Quero Assinar
                 </Button>
-                <p className="text-center text-white pt-10 font-semibold text-xl text-black">Desconto de R$ 100 no plano mensal</p>
+                <p className="text-center text-white pt-10 font-semibold text-xl">Desconto de R$ 100 no plano mensal</p>
             </div>
         </div>
     );
