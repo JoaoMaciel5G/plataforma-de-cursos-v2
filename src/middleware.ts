@@ -1,4 +1,3 @@
-import { redirect } from 'next/navigation'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
@@ -15,6 +14,8 @@ export const config = {
   matcher : [
     "/home",
     "/cart",
+    "/courses/:path?",
+    "/plains/:path?",
     "/contact",
   ]
 }
