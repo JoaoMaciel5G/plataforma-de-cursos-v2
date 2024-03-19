@@ -1,8 +1,29 @@
+"use client"
+
+import { Button } from "@/components/ui/button";
 import CheckListPresentation from "./CheckListPresentation";
 import CheckListRightSide from "./CheckListRightSide";
 import TextLists from "./TextLists";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { signIn, useSession } from "next-auth/react";
 
 const Presentation = () => {
+    const router = useRouter()
+    const {data} = useSession()
+    
+    const handleToaster = () => {
+        toast("Para acessar os cursos, você precisa estar logado!", {
+            action: {
+                label: "Fazer Login",
+                onClick: () => signIn("google")
+            }
+        })
+    }
+
+    const handleRouter = () => {
+        router.push(`/home`) 
+    }
     return (
         <section className="flex flex-col xl:flex-row xl:justify-around mx-3">
             <div className="xl:w-1/2 p-10">
@@ -20,8 +41,8 @@ const Presentation = () => {
                     <CheckListPresentation>Seja um programador acima da média, com as técnicas e arquitetura de software que será ensinado</CheckListPresentation>
                     <CheckListPresentation>Aprenda as tecnologias mais atuais requisitadas no mercado de tecnologia</CheckListPresentation>
                     <CheckListPresentation>Aprenda soft-skills e se detaque em entrevistas, e se torne um funcionário indispensável</CheckListPresentation>
-                    <div className="flex justify-center my-4 ">
-                        <a className="w-1/2 max-md:w-full"><button className="bg-primary rounded-md w-full text-purple text-lg font-semibold py-3">Quero ser um programador 11 estrelas</button></a>
+                    <div className="flex justify-center my-4">
+                        <Button onClick={data?.user ? handleRouter : handleToaster} className="bg-primary rounded-md w-[400px] text-lg font-semibold py-6">Quero ser um programador 11 estrelas</Button>
                     </div>
                 </div>
             </div>
