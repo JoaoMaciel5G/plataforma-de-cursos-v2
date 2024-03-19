@@ -25,11 +25,17 @@ const Home = async () => {
             </Card>
             <div className="flex w-full justify-between py-12">
                 {
-                    courses.map((item: Courses)=>(
-                        <div key={item.id}>
-                            <CourseItems courses={item}/> 
-                        </div>
-                    ))
+                    courses.map((item: Courses)=>{
+                        const productCourses = {
+                            ...item,
+                            price: item.price.toString(),
+                        }
+                        return (
+                            <div key={item.id}>
+                                <CourseItems courses={productCourses}/> 
+                            </div>
+                        )
+                    })
                 }
             </div>
             <section>
