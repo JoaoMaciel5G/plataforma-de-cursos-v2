@@ -3,12 +3,10 @@ import { db } from "@/app/_lib/prisma";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Courses } from "@prisma/client";
 import PlainSignature from "./_components/Plains";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/_lib/auth";
 
 const Home = async () => {
     const courses = await db.courses.findMany({})
-    const session = await getServerSession(authOptions)
+    const plains = await db.plains.findMany({})
 
     return (
         <main className="flex flex-col items-center w-full">
@@ -38,7 +36,7 @@ const Home = async () => {
                 <div>
                     <h2 className="text-3xl font-extrabold my-5 text-primary text-center">Aproveite nossos planos</h2>
                 </div>
-                <PlainSignature/>
+                <PlainSignature plains={plains}/>
             </section>
         </main>
     );

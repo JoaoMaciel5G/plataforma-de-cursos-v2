@@ -1,11 +1,12 @@
-import { db } from "@/app/_lib/prisma";
+"use client"
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Plains } from "@prisma/client";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const PlainSignature = async () => {
-    const plains = await db.plains.findMany({})
+const PlainSignature = ({plains}: {plains: Plains[]}) => {
+    const router = useRouter()
     return (
         <div className="flex flex-col mx-5 gap-5 my-6 lg:flex-row">
             {
@@ -19,7 +20,7 @@ const PlainSignature = async () => {
                                     <p className="line-through text-2xl text-slate-400">{Intl.NumberFormat("pt-br", {style: "currency", currency: "BRL"}).format(Number(plain.price))}</p>
                                     <p className="text-2xl mb-5">Por apenas {Intl.NumberFormat("pt-br", {style: "currency", currency :"BRL"}).format(Number(plain.discountPrince))}</p>
                                 </div>
-                                <Button  className="text-lg bg-primary text-white p-2 rounded-lg my-5">Obter Plano</Button>
+                                <Button onClick={() => router.push(`/plains/${plain.id}`)} className="text-lg bg-primary text-white p-2 rounded-lg my-5">Obter Plano</Button>
                             </div>
                         </CardContent>
                     </Card>
