@@ -8,7 +8,7 @@ const Footer = () => {
                 <label htmlFor="email" className="font-semibold text-lg">Fique por dentro</label>
                 <div>
                     <form className="flex my-2 gap-3 items-center">
-                        <input type="email" id="email" placeholder="Seu endereço de email" className="py-3 outline-none px-4 w-full rounded-lg text-lg placeholder:font-semibold" />
+                        <input type="email" id="email" placeholder="Seu endereço de email" className="py-3 outline-none px-4 w-full text-black rounded-lg text-lg placeholder:font-semibold" />
                         <Button type="submit" className="w-[70px] h-[50px]">
                             <Send size={30} />
                         </Button>
@@ -16,7 +16,7 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center px-2">
                     <div>
-                        <input type="checkbox" id="check" />
+                        <input type="checkbox" id="check"/>
                     </div>
                     <label htmlFor="check" className="font-semibold px-2">Quero receber emails e novidades de cursos e promoções novas e concordo com os termos de privacidade</label>
                 </div>
