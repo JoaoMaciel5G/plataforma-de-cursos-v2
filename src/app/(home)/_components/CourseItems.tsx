@@ -1,16 +1,44 @@
+"use client"
+
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Courses } from "@prisma/client";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image"
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
-const CourseItems = ({courses}: {courses: Courses}) => {
+interface CourseItemsProps {
+    price: string;
+    id: string;
+    title: string;
+    imageUrl: string;
+    description: string
+}
+
+const CourseItems = ({courses}: {courses: CourseItemsProps}) => {
+    const {data} = useSession()
+    const router = useRouter()
+
+    const handleToaster = () => {
+            toast("Para acessar os cursos, você precisa estar logado!", {
+                action: {
+                    label: "Fazer Login",
+                    onClick: () => signIn("google")
+                }
+            })
+    }
+    
+    const handleRouter = () => {
+        router.push(`/courses/${courses.id}`) 
+    }
+
     return (
-        <Card className="min-w-[168px] max-w-[168px]">
+        <Card className="min-w-[168px] max-w-[168px] cursor-pointer" onClick={data?.user ? handleRouter : handleToaster}>
             <CardContent className="p-4">
-                <Link href={`courses/${courses.id}`}>
+                <div>
                     <Image priority={false} height={0} width={0} sizes="100vw" className="h-[159px] w-full rounded-2xl" key={courses.id} src={courses.imageUrl} alt={courses.title}/>
                     <CardTitle className="text-md overflow-hidden text-ellipsis text-nowrap">{courses.title}</CardTitle>
-                </Link>
+                </div>
             </CardContent>
         </Card>
     );
