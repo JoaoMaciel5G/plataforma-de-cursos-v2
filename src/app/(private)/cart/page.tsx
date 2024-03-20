@@ -22,7 +22,7 @@ function Cart() {
 
         const result = await redirectToCheckout(id)
     }
-
+    
     return ( 
         <main className="flex flex-col md:flex-row md:justify-between">
             <section className="md:w-3/4 mt-28 mx-6">
@@ -73,8 +73,8 @@ function Cart() {
                         <p>Total</p>
                         <p>{Intl.NumberFormat("pt-br", {style: "currency", currency: "BRL"}).format(totalPrice!)}</p>
                     </div>
-                    <Button onClick={checkout} className="bg-primary rounded-lg p-2 text-lg w-full my-4">Finalizar compra</Button>
-                    <Button onClick={clearCart} className="bg-primary rounded-lg p-2 text-lg">Limpar Carrinho</Button>
+                    <Button disabled={cartCount == 0} onClick={checkout} className="bg-primary rounded-lg p-2 text-lg w-full my-4">Finalizar compra</Button>
+                    <Button disabled={cartCount == 0} onClick={clearCart} className="bg-primary rounded-lg p-2 text-lg">Limpar Carrinho</Button>
                 </div>
             </section>
         </main>

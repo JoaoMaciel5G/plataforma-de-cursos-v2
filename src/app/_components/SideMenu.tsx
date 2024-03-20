@@ -3,7 +3,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { LogInIcon, UserIcon, LogOutIcon, HomeIcon, AppWindow} from "lucide-react";
+import { LogInIcon, UserIcon, LogOutIcon, HomeIcon, AppWindow, ShoppingCart} from "lucide-react";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 
@@ -36,6 +36,14 @@ const SideMenu = () => {
                                 <Link href="/home">
                                     <AppWindow size={18} className="mr-3"/>
                                     Apresentação
+                                </Link>
+                            </Button>
+                        </div>
+                        <div className="flex flex-col mb-4">
+                            <Button variant="outline" className="justify-start" asChild>
+                                <Link href="/cart">
+                                    <ShoppingCart size={18} className="mr-3"/>
+                                    Carrinho
                                 </Link>
                             </Button>
                         </div>
