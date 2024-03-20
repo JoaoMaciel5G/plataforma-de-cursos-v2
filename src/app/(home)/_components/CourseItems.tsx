@@ -32,7 +32,7 @@ const CourseItems = ({courses}: {courses: CourseItemsProps}) => {
     }
 
     return (
-        <Card className="min-w-[168px] max-w-[168px] cursor-pointer" onClick={data?.user ? handleRouter : handleToaster}>
+        <Card className="min-w-[168px] max-w-[168px] cursor-pointer mx-3" onClick={data?.user ? handleRouter : handleToaster}>
             <CardContent className="p-4">
                 <div>
                     <Image priority={false} height={0} width={0} sizes="100vw" className="h-[159px] w-full rounded-2xl" key={courses.id} src={courses.imageUrl} alt={courses.title}/>

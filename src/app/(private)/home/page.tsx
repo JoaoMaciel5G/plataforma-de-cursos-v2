@@ -1,12 +1,14 @@
 import CourseItems from "@/app/(home)/_components/CourseItems";
 import { db } from "@/app/_lib/prisma";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Courses } from "@prisma/client";
+import { Courses, Plains } from "@prisma/client";
 import PlainSignature from "./_components/Plains";
 
 const Home = async () => {
-    const courses = await db.courses.findMany({})
-    const plains = await db.plains.findMany({})
+    const [courses, plains] = await Promise.all([
+        db.courses.findMany({}),
+        db.plains.findMany({})
+    ])
 
     return (
         <main className="flex flex-col items-center w-full">
@@ -23,7 +25,7 @@ const Home = async () => {
                     </CardDescription>
                 </CardContent>
             </Card>
-            <div className="flex w-full justify-between py-12">
+            <div className="flex select-none py-12 w-full overflow-x-auto [&::-webkit-scrollbar]:hidden">
                 {
                     courses.map((item: Courses)=>{
                         const productCourses = {
@@ -42,7 +44,20 @@ const Home = async () => {
                 <div>
                     <h2 className="text-3xl font-extrabold my-5 text-primary text-center">Aproveite nossos planos</h2>
                 </div>
-                <PlainSignature plains={plains}/>
+                {
+                    plains.map((plain: Plains)=>{
+                        const productPlains = {
+                            ...plain,
+                            price: plain.price.toString(),
+                            discountPrince: plain.discountPrince.toString(),
+                        }
+                        return (
+                            <div key={plain.id}>
+                                <PlainSignature plain={productPlains}/>
+                            </div>
+                        )
+                    })
+                }
             </section>
         </main>
     );
