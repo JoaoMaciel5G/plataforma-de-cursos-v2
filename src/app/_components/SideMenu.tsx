@@ -25,7 +25,7 @@ const SideMenu = () => {
                                     <AvatarImage src={`${data.user.image}`}/>
                                     <AvatarFallback>A</AvatarFallback>
                                 </Avatar>
-                                <h2 className="font-bold text-lg">Olá, {data.user.name}</h2>
+                                <h2 className="font-bold text-lg">Olá, {data.user.name?.split(" ")[0]}</h2>
                             </div>
                             <Button  variant="secondary" size="icon" onClick={handleLogOut}>
                                 <LogOutIcon/>
