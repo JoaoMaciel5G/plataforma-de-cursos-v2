@@ -1,6 +1,7 @@
 import { db } from "@/app/_lib/prisma";
 import { Courses } from "@prisma/client";
 import CourseDetailsPageClient from "./clientComponent";
+import { CourseItemsProps } from "@/app/_types/coursesInterface";
 
 export async function generateStaticParams() {
     const courses = await db.courses.findMany({})
@@ -17,11 +18,15 @@ export default async function CoursesDetailsPage({ params }: { params: { id: str
         where: {
             id
         }
-    }) as Courses
+    })
 
+    const coursesData = {
+        ...courses,
+        price: courses?.price.toString(),
+    } as CourseItemsProps
     return(
         <>
-            <CourseDetailsPageClient key={courses?.id} item={courses}/> 
+            <CourseDetailsPageClient key={courses?.id} item={coursesData}/> 
         </>    
     )
 }

@@ -1,18 +1,11 @@
 "use client"
 
+import { CourseItemsProps } from "@/app/_types/coursesInterface";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-
-interface CourseItemsProps {
-    price: string;
-    id: string;
-    title: string;
-    imageUrl: string;
-    description: string
-}
 
 const CourseItems = ({courses}: {courses: CourseItemsProps}) => {
     const {data} = useSession()

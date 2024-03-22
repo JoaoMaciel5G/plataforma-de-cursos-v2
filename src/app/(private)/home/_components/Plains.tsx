@@ -1,17 +1,9 @@
 "use client"
 
+import { PlainSignatureProps } from "@/app/_types/plainsInterface";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-
-interface PlainSignatureProps {
-    price: string;
-    discountPrince: string;
-    id: string;
-    description: string;
-    option: string;
-    imageUrl: string | null;
-}
 
 const PlainSignature = ({plain}: {plain: PlainSignatureProps}) => {
     const router = useRouter()

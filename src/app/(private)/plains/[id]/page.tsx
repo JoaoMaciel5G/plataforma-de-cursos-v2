@@ -1,6 +1,7 @@
 import { db } from "@/app/_lib/prisma";
 import { Courses, Plains } from "@prisma/client";
 import PlainsPageClient from "./clientComponent";
+import { PlainSignatureProps } from "@/app/_types/plainsInterface";
 
 export async function generateStaticParams() {
     const plains = await db.plains.findMany({})
@@ -10,18 +11,24 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function CoursesDetailsPage({ params }: { params: { id: string } }){
+export default async function PLainsDetailsPage({ params }: { params: { id: string } }){
     const {id} = params
 
     const plains = await db.plains.findUnique({
         where: {
             id
         }
-    }) as Plains
+    })
+
+    const plainsData = {
+        ...plains,
+        price: plains?.price.toString(),
+        discountPrince: plains?.discountPrince.toString()
+    } as PlainSignatureProps
 
     return(
         <>
-            <PlainsPageClient item={plains}/>
+            <PlainsPageClient item={plainsData}/>
         </>    
     )
 }
