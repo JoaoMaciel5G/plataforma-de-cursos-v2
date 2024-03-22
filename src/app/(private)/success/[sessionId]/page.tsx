@@ -11,10 +11,10 @@ export default function Success ({params}: {params: {sessionId: string}}){
 
     useEffect(()=>{
         clearCart()
-        setTimeout(()=>{
+        setTimeout(() => {
             router.push("/home")
-        }, 3000)
-    })
+        }, 3000);
+    }, [clearCart, router])
     
     return(
         <main className="flex flex-col justify-center items-center">
