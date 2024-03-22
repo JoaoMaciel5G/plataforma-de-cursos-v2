@@ -9,8 +9,9 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { PlainSignatureProps } from "@/app/_types/plainsInterface"
 
-export default function PlainsPageClient({item}: {item: Plains}){
+export default function PlainsPageClient({item}: {item: PlainSignatureProps}){
     const {addItem} = useShoppingCart()
     const router = useRouter()
 
